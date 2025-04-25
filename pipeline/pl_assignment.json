@@ -1,0 +1,76 @@
+{
+	"name": "pl_assignment",
+	"properties": {
+		"description": "--\ni have emp table which is present into sql database \nfetch and store it into a list\ngenerate each column list as a output\nid=id_list,name=name_list\n\n--->",
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.input_val",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Append variable",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "append_variable",
+								"value": {
+									"value": "@item()['id']",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Append name",
+							"type": "AppendVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "append_name",
+								"value": {
+									"value": "@item()['name']",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"input_val": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"id": "1",
+						"name": "Ram Patil"
+					},
+					{
+						"id": "2",
+						"name": "Sham Patil"
+					},
+					{
+						"id": "3",
+						"name": "Kiran Jadhav"
+					}
+				]
+			}
+		},
+		"variables": {
+			"append_variable": {
+				"type": "Array"
+			},
+			"append_name": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	}
+}
