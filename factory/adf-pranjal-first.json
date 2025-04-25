@@ -1,0 +1,9 @@
+{
+	"name": "adf-pranjal-first",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9b3fc878-d685-4fdd-bb31-35197b12045f",
+		"tenantId": "02eb0185-cfc5-496a-968d-3021a26c6fe7"
+	}
+}
