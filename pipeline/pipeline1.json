@@ -1,0 +1,58 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Filter1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "r_list",
+					"value": {
+						"value": "@activity('Filter1').output.value",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Filter1",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.name_list",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@startswith(toUpper(item()), 'R')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"name_list": {
+				"type": "array"
+			}
+		},
+		"variables": {
+			"r_list": {
+				"type": "Array"
+			}
+		},
+		"annotations": []
+	}
+}
