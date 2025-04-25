@@ -42,6 +42,54 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "set variable1",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "id_list",
+					"value": {
+						"value": "@variables('append_variable')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "name_list",
+					"value": {
+						"value": "@variables('append_name')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -68,6 +116,12 @@
 				"type": "Array"
 			},
 			"append_name": {
+				"type": "Array"
+			},
+			"id_list": {
+				"type": "Array"
+			},
+			"name_list": {
 				"type": "Array"
 			}
 		},
